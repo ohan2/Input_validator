@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a task</h1>
+        <form onsubmit="validateInputs()">
+        <div class="form-group">
+            <label for="title">Title</label><br/>
+            <input id= "title" type="text" name="title" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label><br/>
+            <textarea id="description" name="description" rows="4" class="form-control" ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category</label><br/>
+            <input id= "category" type="text" name="category" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="priority_level">Priority Level</label><br/>
+            <select id="priority_level" name="priority_level" class="form-control" required>
+                <option value="">Select an item</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="progress_level">Progress Level</label><br/>
+            <select id="progress_level" name="progress_level" class="form-control" required>
+                <option value="">Select an item</option>
+                <option value="started">Started</option>
+                <option value="Pending">Pending</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+        <br/><br/>
+        <input id= "submit" type="submit" class="btn btn-primary" onclick="validate_input(event)">
+        </form>
+        <br/><br/>
+        <a href="tasks.html">Go to tasks</a>
+    </div>
+
+    <script>
+        function validate_input(event) {
+            let fields = ["title", "description", "category", "priority_level", "progress_level"];
+            for (let field of fields) { //iterate through the array
+                let element = document.getElementById(field);
+                if (!element.value.trim()) { //remove all surrounding spaces, resolving to 'false' if empty (0 == false), so '!' is needed to flip 'false' to 'true' to pass into the if statement
+                    alert(field + " is empty!");
+                    event.preventDefault();
+                    return false;
+                }
+
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
+
